@@ -1,8 +1,77 @@
-= lola
+= Lola - A simple collection of languages names and abbreviations for Ruby
 
-Description goes here.
+The idea is to provide a single library for all language naming concerns, and unify them under a consistent API.
 
-== Contributing to lola
+== Installation
+
+  gem install lola
+
+If you're in Rails 3, put this in your Gemfile:
+
+  gem 'lola'
+
+
+== Get a list of all countries
+
+  Lola.languages => […, ['English', 'EN'], …, ['Spanish', 'ES'], …]
+  Lola.languages(:locale => 'es') => […, ['Inglés', 'EN'], …, ['Español', 'ES'], …]
+
+== Abbreviation handling
+
+  Lola.language_name('EN') => 'English'
+  Lola.language_code('Spanish') => 'ES'
+
+== Default Language
+
+Methods that take a language code argument will use the default language if none is provided. The default default language is 'EN'. You can change it to any language code:
+
+  Lola.default_language = 'DE'
+
+== Excluding Languages
+
+Languages to exclude are specified as an array of language codes:
+
+  Lola.excluded_languages = [ 'MR', 'PS', 'TI', ... ]
+
+= Adding Priority Languages
+
+It can be useful to show a few languages first in the list, before any others. This can be done like so:
+
+  Lola.priority_languages = %w(EN ES DE FR)
+
+= Localization
+
+You can switch between different localizations of the languages list, by setting the locale value (default is :en):
+
+  Lola.default_locale = :es
+
+Methods that return language names also take an optional options hash as the last argument, which can be use to override the default locale for a single call:
+
+  Lola.language_name('EN') => 'English'
+  Lola.language_name('EN', :locale => :es) => 'Inglés'
+
+Currently included localizations are: English (:en), Spanish (:es)
+
+= Rails view helpers
+
+Lola ships with replacements for language_select. Usage is simple:
+
+  <%= form_for @address do |f| %>
+    <%= f.label :language, "Language" %> 
+    <%= f.language_select(:language, "EN") %>
+    <%= submit_tag "Create" %>
+  <% end %>
+
+== Changelog
+
+See CHANGELOG.md
+
+== Development notes
+
+The plugin does not require rubygems anywhere in the test or libraries, so if you are having trouble with load errors running the tests, prepend your command with RUBYOPT=rubygems. {More info}[http://tomayko.com/writings/require-rubygems-antipattern].
+
+
+== Contributing to Lola
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
@@ -12,8 +81,7 @@ Description goes here.
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
-== Copyright
+== Credits
 
-Copyright (c) 2011 Carlos Hernandez. See LICENSE.txt for
-further details.
+Thanks to Jim Benton and all the team behind {Carmen}[https://github.com/jim/carmen].
 
