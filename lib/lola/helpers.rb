@@ -22,7 +22,8 @@ module ActionView
           end
         end
 
-        return language_options + options_for_select(Lola.languages, priority_language_codes.include?(selected) ? nil : selected)
+        language_options = language_options + options_for_select(Lola.languages, priority_language_codes.include?(selected) ? nil : selected)
+        return language_options.html_safe
       end
     end
 
