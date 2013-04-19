@@ -14,11 +14,12 @@ module Lola
 
   # Raised when attemting to switch to a locale which does not exist
   class UnavailableLocale < RuntimeError; end
-
+  
   # Returns a list of all languages
   def self.languages(options={})
     # Use specified locale or fall back to default locale
-    locale = (options.delete(:locale) || @default_locale).to_s
+    locale = options.delete(:locale) || @default_locale
+    locale = available_locales.include?(locale) ? locale.to_s : @default_locale.to_s
 
     # Load the country list for the specified locale
     @languages ||= {}
@@ -65,6 +66,14 @@ module Lola
   end
 
   protected
+  def self.available_locales
+    locales = Array.new
+    Dir.glob("#{@data_path}/*.yml") do |filename|
+      locales << File.basename(filename, '.yml').to_sym
+    end
+    locales
+  end
+  
   def self.search_collection(collection, value, index_to_match, index_to_retrieve)
     return nil if collection.nil? || value.nil? || value.empty?
     collection.each do |m|

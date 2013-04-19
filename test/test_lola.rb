@@ -38,7 +38,7 @@ class TestLola < Test::Unit::TestCase
     Lola.default_locale = :es
     assert_equal 'Griego', Lola.language_name('EL')
   end
-
+  
   def test_language_code
     assert_equal 'ES', Lola.language_code('Spanish')
     assert_equal 'ES', Lola.language_code('spanish')
@@ -84,9 +84,7 @@ class TestLola < Test::Unit::TestCase
   end
 
   def test_unsupported_locale
-    assert_raises Lola::UnavailableLocale do
-      Lola.languages(:locale => :latin)
-    end
+    assert_equal 'English', Lola.language_name('EN', :locale => :latin)
   end
 
   def test_special_characters_dont_rails_an_exception
