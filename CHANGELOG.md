@@ -6,3 +6,6 @@
 
 ### 0.1.2
 * Fix problema with Norwegian ISO code
+
+### 0.1.3
+* Use English as default locale
