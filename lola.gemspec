@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "lola"
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Carlos Hernandez"]
-  s.date = "2012-04-10"
+  s.date = "2013-04-19"
   s.description = "A simple collection of language names and abbreviations for Rails apps (includes replacements for language_select)"
   s.email = "carlos@recrea.es"
   s.extra_rdoc_files = [
@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/polimorfico/lola"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.24"
   s.summary = "A simple collection of language names and abbreviations for Rails apps (includes replacements for language_select)"
 
   if s.respond_to? :specification_version then
