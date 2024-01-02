@@ -26,7 +26,7 @@ module Lola
     unless @languages[locale]
       # Check if data in the specified locale is available
       localized_data = File.join(@data_path, "#{locale}.yml")
-      unless File.exists?(localized_data)
+      unless File.exist?(localized_data)
         raise(UnavailableLocale, "Could not load languages for '#{locale}' locale")
       end
 
